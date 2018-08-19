@@ -30,6 +30,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startStop() {
+        if (timerRunning) {
+            stopTimer();
+        } else {
+            startTimer();
+        }
+    }
 
+    private void stopTimer() {
+        countdownTimer.cancel();
+    }
+
+    private void startTimer() {
+        countdownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMilliseconds = millisUntilFinished;
+                updateTimer(); //TODO: IMPLEMENT
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+        timerRunning = true;
     }
 }
