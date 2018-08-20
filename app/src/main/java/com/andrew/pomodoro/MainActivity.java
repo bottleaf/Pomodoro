@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopTimer() {
         countdownTimer.cancel();
+        countdownButton.setText("Start");
         timeRunning = false;
     }
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }.start();
-        
+        countdownButton.setText("Pause");
         timerRunning = true;
     }
 
