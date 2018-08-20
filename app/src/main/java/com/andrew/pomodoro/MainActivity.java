@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopTimer() {
         countdownTimer.cancel();
+        timeRunning = false;
     }
 
     private void startTimer() {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftInMilliseconds = millisUntilFinished;
-                updateTimer(); //TODO: IMPLEMENT
+                updateTimer();
             }
 
             @Override
@@ -54,7 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }.start();
-
+        
         timerRunning = true;
+    }
+
+    private void updateTimer() {
+        int timerDisplayMinutes = (int) timeLeftInMilliseconds / 60000;
+        int timerDisplaySeconds = (int) (timeLeftInMilliseconds % 60000 / 1000;
+        String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplayMinutes);
+        countdownText.setText(timeLeftText);
     }
 }
