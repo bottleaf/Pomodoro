@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView countdownText;
     private Button countdownButton;
     private CountDownTimer countdownTimer;
-    private long timeLeftInMilliseconds = 6000;
+    private long timeLeftInMilliseconds = 600000;
     private boolean timerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private void stopTimer() {
         countdownTimer.cancel();
         countdownButton.setText("Start");
-        timeRunning = false;
+        timerRunning = false;
     }
 
     private void startTimer() {
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTimer() {
         int timerDisplayMinutes = (int) timeLeftInMilliseconds / 60000;
-        int timerDisplaySeconds = (int) (timeLeftInMilliseconds % 60000 / 1000;
-        String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplayMinutes);
+        int timerDisplaySeconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+        String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplaySeconds);
         countdownText.setText(timeLeftText);
     }
 }
