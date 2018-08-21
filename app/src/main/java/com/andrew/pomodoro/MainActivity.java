@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView countdownText;
     private Button countdownButton;
     private CountDownTimer countdownTimer;
-    private long timeLeftInMilliseconds = 600000;
+    private long timeLeftInMilliseconds = (long) 1.5e6;
     private boolean timerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
