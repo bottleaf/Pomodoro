@@ -15,9 +15,10 @@ public class MainActivity extends AppCompatActivity {
     public static final long STANDARD_POMODORO_LENGTH = (long) 1.5e6;
     private Context mContext;
     private TextView countdownText;
-    private Button countdownButton;
+    private Button countdownButton, resetButton;
     private CountDownTimer countdownTimer;
     private long timeLeftInMilliseconds = 3000;
+    private long resetTimeLeft = timeLeftInMilliseconds;
     private boolean timerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,21 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
-
+        resetButton = findViewById(R.id.reset_button);
         updateTimer();
+
         countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startStop();
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeLeftInMilliseconds = resetTimeLeft;
+                updateTimer();
             }
         });
     }
@@ -62,10 +72,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 //Todo: play alarm
+                timeLeftInMilliseconds = 0;
                 updateTimer();
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 Ringtone ringtone = RingtoneManager.getRingtone(mContext,uri);
                 ringtone.play();
+                countdownButton.setText("Start");
+                timerRunning = false;
             }
         }.start();
         countdownButton.setText("Pause");
