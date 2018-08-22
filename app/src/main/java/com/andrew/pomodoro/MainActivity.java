@@ -1,23 +1,30 @@
 package com.andrew.pomodoro;
 
+import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.net.Uri;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 
 public class MainActivity extends AppCompatActivity {
+    public static final long STANDARD_POMODORO_LENGTH = (long) 1.5e6;
+    private Context mContext;
     private TextView countdownText;
     private Button countdownButton;
     private CountDownTimer countdownTimer;
-    private long timeLeftInMilliseconds = (long) 1.5e6;
+    private long timeLeftInMilliseconds = 3000;
     private boolean timerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mContext = getApplicationContext();
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
 
@@ -54,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                //Todo: play alarm
+                updateTimer();
+                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                Ringtone ringtone = RingtoneManager.getRingtone(mContext,uri);
+                ringtone.play();
             }
         }.start();
         countdownButton.setText("Pause");
