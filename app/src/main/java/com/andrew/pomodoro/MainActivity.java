@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
 
+        updateTimer();
         countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
