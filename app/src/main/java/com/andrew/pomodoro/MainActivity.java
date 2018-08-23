@@ -15,11 +15,12 @@ import static android.view.View.*;
 
 public class MainActivity extends AppCompatActivity {
     public static final long STANDARD_POMODORO_LENGTH = (long) 1.5e6;
+    public static final long TEST_POMODORO_LENGTH = 3000;
     private Context mContext;
     private TextView countdownText;
     private Button countdownButton, resetButton;
     private CountDownTimer countdownTimer;
-    private long timeLeftInMilliseconds = 3000;
+    private long timeLeftInMilliseconds = STANDARD_POMODORO_LENGTH;
     private long resetTimeLeft = timeLeftInMilliseconds;
     private boolean timerRunning;
     @Override
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         updateTimer();
         resetButton.setVisibility(INVISIBLE);
         countdownButton.setVisibility(VISIBLE);
+        countdownButton.setText("Start A New Pomodoro");
     }
 
     private void startStop() {
@@ -66,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopTimer() {
         countdownTimer.cancel();
-        countdownButton.setText("Start");
+        countdownButton.setText("Continue This Pomodoro");
+        resetButton.setVisibility(VISIBLE);
         timerRunning = false;
     }
 
-    private void startTimer() {
+    private void startTimer() { //pausing and restarting actually creates a new timer
         countdownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -86,12 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 Ringtone ringtone = RingtoneManager.getRingtone(mContext,uri);
                 ringtone.play();
-                countdownButton.setText("Start");
+                countdownButton.setVisibility(INVISIBLE);
+                resetButton.setVisibility(VISIBLE);
                 timerRunning = false;
             }
         }.start();
         countdownButton.setText("Pause");
-        //resetButton.setVisibility(INVISIBLE);
+        resetButton.setVisibility(INVISIBLE);
         timerRunning = true;
     }
 
