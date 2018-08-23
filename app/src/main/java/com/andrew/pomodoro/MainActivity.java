@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 
+import static android.view.View.*;
+
 public class MainActivity extends AppCompatActivity {
     public static final long STANDARD_POMODORO_LENGTH = (long) 1.5e6;
     private Context mContext;
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
         resetButton = findViewById(R.id.reset_button);
-        updateTimer();
 
         countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,10 +42,18 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timeLeftInMilliseconds = resetTimeLeft;
-                updateTimer();
+                resetTimer();
             }
         });
+
+        resetTimer();
+    }
+
+    private void resetTimer() {
+        timeLeftInMilliseconds = resetTimeLeft;
+        updateTimer();
+        resetButton.setVisibility(INVISIBLE);
+        countdownButton.setVisibility(VISIBLE);
     }
 
     private void startStop() {
@@ -82,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
         countdownButton.setText("Pause");
+        //resetButton.setVisibility(INVISIBLE);
         timerRunning = true;
     }
 

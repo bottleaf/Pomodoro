@@ -30,6 +30,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="176dp"
-        android:text="Reset" />
+        android:text="Reset"
+        android:visibility="invisible"
+        tools:visibility="visible"/> #this is so the button appears in the Design
 
 </RelativeLayout>
