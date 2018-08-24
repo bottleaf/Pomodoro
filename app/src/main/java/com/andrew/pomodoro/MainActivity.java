@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView countdownText;
     private Button countdownButton, resetButton;
     private CountDownTimer countdownTimer;
+    private MediaPlayer mediaPlayer;
     private long timeLeftInMilliseconds = TEST_POMODORO_LENGTH;
     private long resetTimeLeft = timeLeftInMilliseconds;
     private boolean timerRunning;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
         resetButton = findViewById(R.id.reset_button);
+
 
         countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setVisibility(INVISIBLE);
         countdownButton.setVisibility(VISIBLE);
         countdownButton.setText("Start A New Pomodoro");
+        if (mediaPlayer != null)
+            mediaPlayer.pause();
     }
 
     private void startStop() {
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 countdownButton.setVisibility(INVISIBLE);
                 resetButton.setVisibility(VISIBLE);
                 timerRunning = false;
-                MediaPlayer mediaPlayer = MediaPlayer.create(mContext, R.raw.alarm_drum);
+                mediaPlayer = MediaPlayer.create(mContext, R.raw.alarm_drum);
                 mediaPlayer.start();
             }
         }.start();
