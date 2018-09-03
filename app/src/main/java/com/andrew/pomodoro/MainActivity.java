@@ -1,6 +1,7 @@
 package com.andrew.pomodoro;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button countdownButton, resetButton;
     private CountDownTimer countdownTimer;
     private MediaPlayer mediaPlayer;
-    private long timeLeftInMilliseconds = STANDARD_POMODORO_LENGTH;
+    private long timeLeftInMilliseconds = TEST_POMODORO_LENGTH;
     private long resetTimeLeft = timeLeftInMilliseconds;
     private boolean timerRunning;
 
@@ -114,8 +115,9 @@ public class MainActivity extends AppCompatActivity {
         String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplaySeconds);
         countdownText.setText(timeLeftText);
     }
-
+    /*Called when timer is reset after pomodoro is completed to start a break timer */
     public void sendMessage(View view) {
-
+        Intent intent = new Intent(this, DisplayBreakTimerActivity.class );
+        startActivity(intent);
     }
 }
