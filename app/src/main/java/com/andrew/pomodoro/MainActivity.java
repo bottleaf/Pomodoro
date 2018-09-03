@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
     public static final long TEST_POMODORO_LENGTH = 3000;
     private Context mContext;
     private TextView countdownText;
-    private Button countdownButton, resetButton;
+    private Button countdownButton, resetButton, breakButton;
     private CountDownTimer countdownTimer;
     private MediaPlayer mediaPlayer;
     private long timeLeftInMilliseconds = TEST_POMODORO_LENGTH;
     private long resetTimeLeft = timeLeftInMilliseconds;
-    private boolean timerRunning;
+    private boolean timerRunning, pomodoroCompleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
         resetButton = findViewById(R.id.reset_button);
-
+        breakButton = findViewById(R.id.break_button);
 
         countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,13 +48,18 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean pomodoroCompleted = (timeLeftInMilliseconds == 0);
                 resetTimer();
-                if (pomodoroCompleted) {
-                    sendMessage(null); //TODO:START NEW ACTIVITY
-                }
             }
         });
+
+        breakButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pomodoroCompleted = false;
+                sendMessage(breakButton);
+            }
+        });
+
 
         resetTimer();
     }
@@ -63,10 +68,14 @@ public class MainActivity extends AppCompatActivity {
         timeLeftInMilliseconds = resetTimeLeft;
         updateTimer();
         resetButton.setVisibility(INVISIBLE);
+        if (pomodoroCompleted) {
+            breakButton.setVisibility(VISIBLE);
+        } else {
+            breakButton.setVisibility(INVISIBLE);
+        }
         countdownButton.setVisibility(VISIBLE);
         countdownButton.setText("Start A New Pomodoro");
-        if (mediaPlayer != null)
-            mediaPlayer.pause();
+        if (mediaPlayer != null) { mediaPlayer.pause();}
     }
 
     private void startStop() {
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         countdownTimer.cancel();
         countdownButton.setText("Continue This Pomodoro");
         resetButton.setVisibility(VISIBLE);
+        breakButton.setVisibility(INVISIBLE);
         timerRunning = false;
     }
 
@@ -94,19 +104,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                //Todo: play alarm
                 timeLeftInMilliseconds = 0;
                 updateTimer();
                 countdownButton.setVisibility(INVISIBLE);
                 resetButton.setVisibility(VISIBLE);
+                breakButton.setVisibility(VISIBLE);
                 timerRunning = false;
+                pomodoroCompleted = true;
                 mediaPlayer = MediaPlayer.create(mContext, R.raw.alarm_drum);
                 mediaPlayer.start();
             }
         }.start();
         countdownButton.setText("Pause");
         resetButton.setVisibility(INVISIBLE);
+        breakButton.setVisibility(INVISIBLE);
         timerRunning = true;
+        pomodoroCompleted = false;
     }
 
     private void updateTimer() {

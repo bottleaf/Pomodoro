@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisplayBreakTimerActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/break_countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="99:99"
+        android:textAppearance="@android:style/TextAppearance.Inverse"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="60sp"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <TextView
+        android:id="@+id/break_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="107dp"
+        android:text="Take a 5 minute break"
+        android:textAppearance="@android:style/TextAppearance.Inverse"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="66dp" />
+
+    <Button
+        android:id="@+id/break_end_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="131dp"
+        android:text="Finish Break"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="282dp"
+        tools:visibility="visible" />
+
+</RelativeLayout>
