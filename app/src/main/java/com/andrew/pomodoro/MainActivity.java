@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button countdownButton, resetButton;
     private CountDownTimer countdownTimer;
     private MediaPlayer mediaPlayer;
-    private long timeLeftInMilliseconds = TEST_POMODORO_LENGTH;
+    private long timeLeftInMilliseconds = STANDARD_POMODORO_LENGTH;
     private long resetTimeLeft = timeLeftInMilliseconds;
     private boolean timerRunning;
 
@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean pomodoroCompleted = (timeLeftInMilliseconds == 0);
                 resetTimer();
+                if (pomodoroCompleted) {
+                    sendMessage(null); //TODO:START NEW ACTIVITY
+                }
             }
         });
 
@@ -109,5 +113,9 @@ public class MainActivity extends AppCompatActivity {
         int timerDisplaySeconds = (int) timeLeftInMilliseconds % 60000 / 1000;
         String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplaySeconds);
         countdownText.setText(timeLeftText);
+    }
+
+    public void sendMessage(View view) {
+
     }
 }

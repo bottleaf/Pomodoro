@@ -14,14 +14,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="145dp"
         android:text="99:99"
+        android:textAppearance="@android:style/TextAppearance.Inverse"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="60sp" />
 
     <Button
         android:id="@+id/countdown_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/holo_blue_dark"
         android:text="Start A New Pomodoro"
-        android:layout_centerInParent="true" />
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/reset_button"
