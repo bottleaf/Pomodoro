@@ -133,4 +133,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, DisplayBreakTimerActivity.class);
         startActivity(intent);
     }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, testLaunchActivity.class);
+        startActivity(intent);
+    }
+
 }

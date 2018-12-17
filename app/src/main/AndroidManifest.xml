@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayBreakTimerActivity"
+        <activity
+            android:name=".DisplayBreakTimerActivity"
             android:label="@string/breakTimerActivity_name"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".testLaunchActivity"></activity>
     </application>
 
 </manifest>
