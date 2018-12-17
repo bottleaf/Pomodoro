@@ -45,7 +45,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="105dp"
-        android:text="Start a timed break."
+        android:onClick="launchDisplayBreakTimerActivity"
+        android:text="@string/start_a_timed_break"
         android:visibility="invisible"
         tools:visibility="visible" />
 

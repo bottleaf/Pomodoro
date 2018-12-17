@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        breakButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pomodoroCompleted = false;
-                sendMessage(breakButton);
-            }
-        });
+//        breakButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                pomodoroCompleted = false;
+//                sendMessage(breakButton);
+//            }
+//        });
 
 
         resetTimer();
@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         countdownText.setText(timeLeftText);
     }
     /*Called when timer is reset after pomodoro is completed to start a break timer */
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayBreakTimerActivity.class );
+    public void launchDisplayBreakTimerActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, DisplayBreakTimerActivity.class);
         startActivity(intent);
     }
 }
