@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.net.Uri;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 
 import static android.view.View.*;
 
@@ -51,15 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 resetTimer();
             }
         });
-
-//        breakButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                pomodoroCompleted = false;
-//                sendMessage(breakButton);
-//            }
-//        });
-
 
         resetTimer();
     }
@@ -130,12 +118,12 @@ public class MainActivity extends AppCompatActivity {
     }
     /*Called when timer is reset after pomodoro is completed to start a break timer */
     public void launchDisplayBreakTimerActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, DisplayBreakTimerActivity.class);
+        Intent intent = new Intent(MainActivity.this, launchBreakActivity.class);
         startActivity(intent);
     }
 
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, testLaunchActivity.class);
+        Intent intent = new Intent(this, launchBreakActivity.class);
         startActivity(intent);
     }
 

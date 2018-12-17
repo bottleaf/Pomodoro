@@ -20,7 +20,7 @@
             android:name=".DisplayBreakTimerActivity"
             android:label="@string/breakTimerActivity_name"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".testLaunchActivity"></activity>
+        <activity android:name=".launchBreakActivity"></activity>
     </application>
 
 </manifest>
