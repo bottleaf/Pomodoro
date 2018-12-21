@@ -58,7 +58,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
         android:onClick="sendMessage"
-        android:text="testActivityLaunch" />
+        android:text="testActivityLaunch"
+        android:visibility="visible"/>
 
 
 </RelativeLayout>
