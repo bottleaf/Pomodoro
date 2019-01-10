@@ -3,4 +3,5 @@
     <string name="start_a_timed_break">Start a timed break.</string>
     <string name="breakTimerActivity_name">Break Timer</string>
     <string name="end_break_early">End Break Early</string>
+    <string name="end_break">Finish Break</string>
 </resources>

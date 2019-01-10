@@ -1,6 +1,7 @@
 package com.andrew.pomodoro;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
@@ -10,10 +11,12 @@ import static android.view.View.*;
 
 public class launchBreakActivity extends AppCompatActivity {
     private static final long STANDARD_BREAK_LENGTH = (long) 3e5;
-    private static final long TEST_POMODORO_LENGTH = 3000;;
+    private static final long TEST_POMODORO_LENGTH = 3000;
     private Context mContext;
     private TextView breakTimerText;
     private Button endBreakButton;
+    private CountDownTimer countdownTimer;
+    private long millisecondsLeft = TEST_POMODORO_LENGTH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +33,20 @@ public class launchBreakActivity extends AppCompatActivity {
                 finish();
             }
         });
+        countdownTimer = new CountDownTimer(millisecondsLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                millisecondsLeft = millisUntilFinished;
+                updateTimer();
+            }
+            @Override
+            public void onFinish() {
+                millisecondsLeft = 0;
+                updateTimer();
+                endBreakButton.setText(R.string.end_break);
+            }
+        }.start();
     }
+
+    private void updateTimer() {} //TODO: update timer every tick
 }
