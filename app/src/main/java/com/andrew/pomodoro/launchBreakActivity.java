@@ -48,5 +48,10 @@ public class launchBreakActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void updateTimer() {} //TODO: update timer every tick
+    private void updateTimer() {
+        int timerDisplayMinutes = (int) millisecondsLeft / 60000;
+        int timerDisplaySeconds = (int) millisecondsLeft % 60000 / 1000;
+        String timeLeftText = String.format("%02d", timerDisplayMinutes) + ":" + String.format("%02d", timerDisplaySeconds);
+        breakTimerText.setText(timeLeftText);
+    }
 }
